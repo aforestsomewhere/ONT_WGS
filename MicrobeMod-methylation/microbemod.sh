@@ -21,7 +21,8 @@ while IFS= read -r barcode; do
   var_REF="${var_REF_BASE}/${barcode}_done/trycycler_cluster/cluster_001/7_final_consensus.fasta"
   mkdir -p output/"${barcode}"
   cd output/"${barcode}"
-  MicrobeMod call_methylation -b "$var_BC_DIR"/"${barcode}.mapped.bam -r $var_REF -t 10
+  MicrobeMod call_methylation -b "$var_BC_DIR"/"${barcode}".mapped.bam -r $var_REF -t 10
+  MicrobeMod annotate_rm -f $var_REF -o "${barcode}" -t 10
   cd ../../
 done < "$BARCODE_FILE"
 conda deactivate
